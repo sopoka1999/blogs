@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>阅读本地 txt 文件</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<div id="text-content"></div>
+
+	<script>
+		// 使用 AJAX 加载本地 txt 文件
+		var xhr = new XMLHttpRequest();
+		
+		xhr.open('GET', 'a.txt', true);
+		xhr.onreadystatechange = function() {
+		  if (xhr.readyState === 4 && xhr.status === 200) {
+		    // 将文件内容显示在页面上
+		    document.getElementById('text-content').innerHTML = xhr.responseText;
+		  }
+		};
+		xhr.send();
+
+	</script>
+
+</body>
+</html>
