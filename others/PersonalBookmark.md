@@ -15,3 +15,5 @@
 [清华开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/)
 
 [中南大学校园网](https://portal.csu.edu.cn/a79.html)
+
+The Pirate Bay（海盗湾）
