@@ -10,8 +10,6 @@ Firewalld 和UFW 都是基于 iptables 的前端工具，可以用于管理Linux
 
 sudo iptables -F
 
-
-
 ### 1.2. 关闭Firewalld
 
 要关闭Firewalld并使其在系统重启后仍然保持关闭状态，请按以下步骤操作：
