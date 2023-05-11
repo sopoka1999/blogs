@@ -15,8 +15,9 @@ vim /etc/nginx/nginx.conf
 
 sudo systemctl reload nginx
 
-注意：一定要加上user root ，不然很可能没有访问权限
-nginx的错误日志位于：/var/log/nginx/error.log
+注意：一定要加上user root ，不然很可能没有访问权限  
+
+nginx的错误日志位于：/var/log/nginx/error.log  
 
 
 ```
