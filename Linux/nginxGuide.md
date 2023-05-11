@@ -15,9 +15,9 @@ vim /etc/nginx/nginx.conf
 
 sudo systemctl reload nginx
 
-
 注意：一定要加上user root ，不然很可能没有访问权限
 nginx的错误日志位于：/var/log/nginx/error.log
+
 
 ```
 user root;
@@ -41,7 +41,7 @@ http {
 
         # 前端项目配置
         location / {
-            root /home/chenzihao/workspace/chatGPT/chatgpt;
+            root /root/chatGPT/chatgpt;
             index index.html index.htm;
             try_files $uri $uri/ /index.html;
         }
@@ -60,12 +60,6 @@ http {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
-        }
-
-        location /public/ {
-            root /root/gesdh/dist;
-            expires 30d;
-            add_header Cache-Control "public";
         }
    }
 
@@ -86,7 +80,7 @@ http {
 
         # 前端项目配置
         location / {
-            root /home/chenzihao/workspace/qxmeHomePage;
+            root /root/qxmeHomePage;
             index index.html index.htm;
             try_files $uri $uri/ /index.html;
         }
@@ -95,8 +89,4 @@ http {
 events {
     worker_connections 1024;
 }
-
-
-
-
 ```
