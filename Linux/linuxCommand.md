@@ -14,4 +14,13 @@
 |                                             |                    |
 
 
+查看网关地址
+ip route | grep default
 
+新建一个hushlogin文件，屏蔽掉登录提示
+touch ~/.hushlogin 
+
+修改ubuntu主机名称
+运行下面的命令，然后替换主机名称
+sudo vim /etc/hostname
+sudo vim /etc/hosts

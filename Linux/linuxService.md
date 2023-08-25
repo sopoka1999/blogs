@@ -34,7 +34,7 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-⚠️：ExecStart指定命令可以是shell，但是shell头部必须包含 `\#!/bin/sh`
+⚠️：ExecStart指定命令可以是shell，但是shell头部必须包含 `#!/bin/sh`
 
 ⚠️：只有那种阻塞的进程才能作为服务调用，如果一瞬间就运行完毕，那就不能让它作为服务，例如tomcat的`startup.sh`，我们替换为： `ExecStart=./catalina.sh run`
 
@@ -90,6 +90,7 @@ WorkingDirectory=/home/chenzihao/workspace/rustdesk-server
 ExecStart=/bin/bash -c './hbbs | ./hbbr'
 ExecStop=/bin/bash -c 'fuser -k 21119/tcp | fuser -k 21117/tcp'
 Restart=on-failure
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
@@ -106,6 +107,8 @@ Description=tomcat
 [Service]
 Type=simple
 ExecStart=/home/chenzihao/workspace/apache-tomcat-8.5.73/bin/catalina.sh run
+Restart=on-failure
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
@@ -122,7 +125,8 @@ Description=frps
 [Service]
 Type=simple
 ExecStart=/home/chenzihao/workspace/frp/frp_0.48.0_linux_amd64/frps -c /home/chenzihao/workspace/frp/frp_0.48.0_linux_amd64/frps.ini
-Restart=always
+Restart=on-failure
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target

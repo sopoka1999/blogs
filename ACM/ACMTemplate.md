@@ -164,6 +164,27 @@ int main(){
 
 # 数据结构
 
+树状数组
+
+```C++
+int C[maxn];
+     
+void update(int k,int x){  //在指定位置k上加x
+    for(int i=k;i<=2e5;i+=lowbit(i))
+        C[i]+=x;
+}
+
+int quer(int x){ //查询1-x的和
+    int ans=0;
+    for(int i=x;i;i-=lowbit(i))//i要大于0
+        ans+=C[i];
+    return ans;
+}
+
+```
+
+
+
 ## 线段树
 
 ```C++
@@ -467,32 +488,76 @@ $1$ 到 $10^{n}$ 的数平均下来每个数有16个约数
 
 # 图论
 
+## BFS
+
+```c++
+inline bool isVild(int x,int y){
+    if(x>=0&&x<n&&y>=0&&y<m)return 1;
+    return 0;
+}
+void bfs(int x0, int y0, int x1, int y1){
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            vis[i][j] = 0;
+        }
+    }
+    ma[x1][y1] = '#';
+    queue<pair<int,int>>que;
+    que.push(make_pair(x0,y0));
+    vis[x0][y0] = 1;
+    while(que.size()){
+        pair<int,int> now = que.front(); 
+        que.pop();
+        for(int i=0;i<4;i++){
+            int x = now.first + offx[i];
+            int y = now.second + offy[i];
+            if(isVild(x,y) &&vis[x][y]==0 && ma[x][y]=='.'){
+                vis[x][y] = 1;
+                que.push(make_pair(x, y));
+            }
+        }
+    }
+    ma[x1][y1] = '.';
+    return ;
+}
+```
+
 ## 最短路径
+
+
 
 ### 迪杰斯特拉
 
 ```c++
 //堆优化版本，复杂度O(v*lgn)
-void dij(int s,int f){
-  priority_queue<node> q;
-  node t,to;
-  mem(dis[f],0x3f);
-  mem(flag,0);
-  dis[f][s]=0;
-  q.push(node(s,0));
-  while(!q.empty()){
-    t=q.top();
-    q.pop();
-    if(flag[t.id]) continue;
-    flag[t.id]=1;
-    for(int i=0;i<sz(mp[t.id]);i++){
-      to=mp[t.id][i];
-      if(dis[f][to.id]>dis[f][t.id]+to.v){
-        dis[f][to.id]=dis[f][t.id]+to.v;
-        q.push(node(to.id,dis[f][to.id]));
-      }
+void dij(int src){
+    priority_queue<pair<int,int>> que;
+    for(int i=0;i<n;i++){
+        dis[i] = 1e9;
+        vis[i] = 0;
     }
-  }
+    dis[src] = 0;
+    que.push(make_pair(0, src));
+    while(!que.empty()){
+        pair<int,int> top =que.top();
+        que.pop();
+        
+        if(vis[top.second] == 0){
+            vis[top.second] = 1;
+            }else{
+            continue;
+        }
+        for(int i=0;i<n;i++){
+            int to=edges[top.second][i];
+            if(i == top.second)continue;
+            if(to == -1) continue;
+            
+            if(dis[i] > dis[top.second] + to){
+                dis[i] = dis[top.second] + to;
+                que.push(make_pair(-dis[i], i));
+            }
+        }
+    }
 }
 ```
 

@@ -23,3 +23,6 @@ https://www.runoob.com/docker/macos-docker-install.html
 ```
 docker load -i /path/to/save/image.tar
 ```
+
+docker ps 查看所有的镜像
+docker exec -it my_container bash 进入镜像命令行

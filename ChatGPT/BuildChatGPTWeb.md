@@ -1,9 +1,5 @@
 # 搭建ChatGPT网站
 
-
-
-
-
 ubuntu 20.04网络不是很稳定，有时候出现如下报错：
 
 ![image-20230320172328465](/Users/chenzihao/Library/Application Support/typora-user-images/image-20230320172328465.png)
