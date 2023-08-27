@@ -1,4 +1,4 @@
-https://www.googleapis.com/customsearch/v1?key=AIzaSyAtOKSEq19cruMwQaE08qw1N7K0Jw7h4jg&q=中国有多少人口&cx=54dd2114aad0f4a5a&start=10&num=10
+https://www.googleapis.com/customsearch/v1?key=API_KEY&q=中国有多少人口&cx=54dd2114aad0f4a5a&start=10&num=10
 
 
 ## 🔍 Google API Keys Configuration
