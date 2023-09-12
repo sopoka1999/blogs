@@ -1,4 +1,6 @@
-Docker
+# Docker学习笔记
+
+## 1. 安装docker
 
 安装
 
@@ -6,7 +8,7 @@ https://www.runoob.com/docker/macos-docker-install.html
 
 
 
-
+## 2. 导出docker镜像
 
 1.  运行以下命令将镜像保存到一个 tar 文件中：
 
@@ -23,6 +25,10 @@ https://www.runoob.com/docker/macos-docker-install.html
 ```
 docker load -i /path/to/save/image.tar
 ```
+
+
+
+## 3. 进入docker命令行 
 
 docker ps 查看所有的镜像
 docker exec -it my_container bash 进入镜像命令行
