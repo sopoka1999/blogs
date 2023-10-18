@@ -1,4 +1,6 @@
-## C++模版
+# 1. 模版
+
+## 1.1 C++模版
 
 ```c++
 #include <iostream>
@@ -28,7 +30,7 @@ int main() {
 
 
 
-## java模版
+## 1.2 java模版
 
 ```java
 import java.math.BigInteger;
@@ -45,9 +47,9 @@ public static void add(){
 
 
 
-# 字符串
+# 2. 字符串
 
-## String类的基本用法
+## 2.1 String类的基本用法
 
 substring(a,b) 	将字符串取出[a,b),组成新的字符串
 
@@ -55,7 +57,50 @@ indexOf(ch) 		返回字符串ch第一次出现的位置，没有则-1
 
 
 
-## 马拉车
+## 2.2 KMP
+
+```C++
+vector<int> calc_max_match(string s) {
+    vector<int> match(s.length());
+    int c = 0;
+    for (int i = 1; i < s.length(); i++) {
+        char v = s[i];
+        while (c && s[c] != v) {
+            c = match[c - 1];
+        }
+        if (s[c] == v) {
+            c++;
+        }
+        match[i] = c;
+    }
+    return match;
+}
+
+// KMP 模板
+// 返回 text 中出现了多少次 pattern（允许 pattern 重叠）
+int kmp_search(string text, string pattern) {
+    vector<int> match = calc_max_match(pattern);
+    int match_cnt = 0, c = 0;
+    for (int i = 0; i < text.length(); i++) {
+        char v = text[i];
+        while (c && pattern[c] != v) {
+            c = match[c - 1];
+        }
+        if (pattern[c] == v) {
+            c++;
+        }
+        if (c == pattern.length()) {
+            match_cnt++;
+            c = match[c - 1];
+        }
+    }
+    return match_cnt;
+}
+```
+
+
+
+## 2.2 马拉车
 
 ```C++
 void manacher(){
@@ -85,7 +130,7 @@ void manacher(){
 
 
 
-## 后缀自动机
+## 2.3 后缀自动机
 
 ```C++
 #include<bits/stdc++.h>
@@ -162,9 +207,9 @@ int main(){
 
 
 
-# 数据结构
+# 3. 数据结构
 
-树状数组
+## 3.1 树状数组
 
 ```C++
 int C[maxn];
@@ -185,7 +230,7 @@ int quer(int x){ //查询1-x的和
 
 
 
-## 线段树
+## 3.2 线段树
 
 ```C++
 lazy和tree数组都需要开四倍空间
@@ -246,7 +291,7 @@ int quer(int l,int r,int st,int en,int rt){
 
 
 
-## 主席树
+## 3.3 主席树
 
 ```c++
 #include <cstdio>
@@ -310,9 +355,9 @@ int main(){
 
 
 
-# 数论
+# 4. 数论
 
-## 快速幂
+## 4.1 快速幂
 
 ```c++
 普通
@@ -327,32 +372,38 @@ ll mypow(ll x,ll n){
 }
 
 矩阵
-struct matrix {
-   ll num[2][2];
+struct Matrix{
+    long long num[2][2];
 }one;
+one.num[0][0] = 1;
+one.num[1][1] = 1;
+
 matrix mul(matrix a,matrix b){
-    matrix res;
-    rep(i,0,1){
-        rep(j,0,1){
+    Matrix res;
+    for(int i=0;i<a;i++){
+        for(int j=0;j<c;j++){
             res.num[i][j]=0;
-            rep(k,0,1)res.num[i][j]=(res.num[i][j]+a.num[i][k]*b.num[k][j]%mod)%mod;
+            for(int k=0;k<b;k++){
+                res.num[i][j]=(res.num[i][j]+x.num[i][k]*y.num[k][j]%mod)%mod;
+            }
         }
     }
     return res;
 }
+
 matrix mypow(matrix x,ll n){
-    mat res=one;
-    while(n){
-        if(n&1)res=mul(res,x);
-        x=mul(x,x);
-        n/=2;
+    Matrix res = one;
+    while(k){
+        if(k&1)res=mutiple_ma(res,x, 2,2,2);
+        x=mutiple_ma(x,x,2,2,2);
+        k/=2;
     }
     return res;
 }
 ```
 
 
-## 欧拉函数
+## 4.2 欧拉函数
 
 用途：求1到n-1中与n互质的个数
 
@@ -375,7 +426,7 @@ int euler(int n){
 
  
 
-## 扩展欧几里得
+## 4.3 扩展欧几里得
 
 用途：求ax+by=gcd（a，b）中的特解（x1，y1），进而根据x=x1+k(b/gcd),y=x1+k(a/gcd)得到通解,当mod不为素数的时候，费马小定理无效，可以用扩展欧几里得算法求逆元
 
@@ -398,7 +449,7 @@ ll gcdd(ll a,ll b,ll &x,ll &y){
 
 
 
-## 组合数的公式
+## 4.4 组合数的公式
 
 $C(n,0)^2+C(n,1)^2+C(n,2)^2+...+C(n,n)^2=C(2n,n)$
 
@@ -408,7 +459,7 @@ $C(n,m)=n!/[m!(n-m)!]$
 
 
 
-## 线性素数筛
+## 4.5 线性素数筛
 
 用途：在线性时间打出一个素数表和判断某个数是否为素数的表
 
@@ -431,7 +482,7 @@ $C(n,m)=n!/[m!(n-m)!]$
 
 
 
-## 莫比乌斯反演
+## 4.6 莫比乌斯反演
 
 定义 $U(x)$ 函数
 
@@ -443,19 +494,19 @@ $C(n,m)=n!/[m!(n-m)!]$
 
 
 
-## Burnside引理与Polya定理
+## 4.7 Burnside引理与Polya定理
 
 $$1=\frac{1}{|G|}[c_1(a_1)+c_2(a_2)+c_3(a_3)+....c_g(a_g)]$$
 
 
 
-## 斯特拉公式
+## 4.8 斯特拉公式
 
 $$n!\approx \sqrt {2\pi n}(\frac{n}{e})^{n}$$
 
 
 
-## 线性基
+## 4.9 线性基
 
 ```c++
 bool insert(int x){ //插入x
@@ -476,7 +527,7 @@ for(int i=62;i>=0;i--) if((ans^p[i])>ans) ans=ans^p[i];//从线性基中得到�
 
  
 
-## 数学小常识
+## 4.10 数学小常识
 
 ### 约数
 
@@ -486,7 +537,7 @@ $1$ 到 $10^{n}$ 的数平均下来每个数有16个约数
 
 
 
-# 图论
+# 5. 图论
 
 ## BFS
 
@@ -819,7 +870,7 @@ int lca(int a,int b){
 
 
 
-# 计算几何
+# 6. 计算几何
 
 ## 向量叉积
 
@@ -835,7 +886,7 @@ $$A(x_1,y_1)\times B(x_2,y_2)=y_1x_2-x_1y_2=|A|\times |B|\times sin(A,B)$$
 
 
 
-# 博弈论
+# 7. 博弈论
 
 ## sg函数
 
@@ -849,13 +900,7 @@ $$A(x_1,y_1)\times B(x_2,y_2)=y_1x_2-x_1y_2=|A|\times |B|\times sin(A,B)$$
 
 
 
-# 小技巧
-
-## eclipes配置
-
-自动补全：java->editor->content assist
-
-自动缩进：ctrl+shift+F
+# 8. 小技巧
 
 
 
@@ -896,3 +941,22 @@ freopen("F:\\out.txt","w",stdout);
 srand((unsigned)time(NULL));
 rand();//返回的随机数是1到	32767
 ```
+
+
+
+## C++ sort中的自定义比较函数
+
+cmp函数最好满足严格的弱序关系：
+
+1.   非自反性（Irreflexivity）：对于任意`x`，`compare(x, x)`返回`false`。
+2.   非对称性（Asymmetry）：如果`compare(x, y)`返回`true`，那么`compare(y, x)`返回`false`。
+3.   可传递性（Transitivity）：如果`compare(x, y)`和`compare(y, z)`都返回`true`，那么`compare(x, z)`也应返回`true`。
+
+例如：
+
+```c++
+bool compare(int a, int b) {
+    return a < b;  // 按照升序排序
+}
+```
+
