@@ -103,28 +103,28 @@ int kmp_search(string text, string pattern) {
 ## 2.2 马拉车
 
 ```C++
-void manacher(){
-  int len=strlen(word1+1);
-  int cnt=0;
-  word2[++cnt]='#';
-  rep(i,1,len){
-    word2[++cnt]=word1[i];
-   	word2[++cnt]='#';
-	}
-  len=cnt;
-  int maxx=0,id=1;
-  rep(i,1,len){
-    if(i<maxx){
-      p[i]=min(p[2*id-i],maxx-i);
-  	}else{
-      p[i]=0;
+void manacher(string& word1){
+    int len = word1.size();
+    int cnt = 0;
+    word2[++cnt]='#';
+    for(int i=1;i<=len;i++){
+        word2[++cnt]=word1[i-1];
+        word2[++cnt]='#';
     }
-    while(i-p[i]-1>=1&&i+p[i]+1<=len&&word2[i+p[i]+1]==word2[i-p[i]-1])p[i]++;
-    if(i+p[i]>maxx){
-      id=i;
-      maxx=i+p[i];
+    len = cnt;
+    int maxx=0,id=1;
+    for(int i=1;i<=len;i++){
+        if(i<maxx){
+            p[i]=min(p[2*id-i],maxx-i);
+        }else{
+            p[i]=0;
+        }
+        while(i-p[i]-1>=1&&i+p[i]+1<=len&&word2[i+p[i]+1]==word2[i-p[i]-1])p[i]++;
+        if(i+p[i]>maxx){
+            id=i;
+            maxx=i+p[i];
+        }
     }
-  }
 }
 ```
 

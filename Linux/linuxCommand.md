@@ -24,3 +24,15 @@ touch ~/.hushlogin
 运行下面的命令，然后替换主机名称
 sudo vim /etc/hostname
 sudo vim /etc/hosts
+
+
+
+
+
+
+
+使用parted 新建part分区并给它所有空间
+
+查看硬盘情况lsblk
+
+查看挂载情况df -h

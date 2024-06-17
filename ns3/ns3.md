@@ -26,10 +26,10 @@ $ ./ns3 run first
 1. 在ns-allinone-3.39/ns-3.39/scratch 下新建my_program.cc
 2. 编译加运行  ./ns3 run my_program2 
 
-卸载ns3
+清理ns3编译文件
 
 ```
-/ns3 clean 
+./ns3 clean 
 ```
 
 

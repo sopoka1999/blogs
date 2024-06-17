@@ -15,8 +15,15 @@ SET GLOBAL validate_password.policy = LOW;
 `bind-address = 0.0.0.0`
 
 
+
+sudo systemctl restart mysql.service
+
+
 修改root密码
 
 ```
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new-password';
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '02aaI99vPdeec051';
+
+CREATE USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '02aaI99vPdeec051';
+
 ```
